@@ -27,6 +27,7 @@ function game() {
     let computerSelection = getComputerChoice();
 
     console.log(playerSelection)
+    console.log(computerSelection)
     gameplay(playerSelection, computerSelection)
 }
 
@@ -42,4 +43,24 @@ function getComputerChoice() {
 
 // Compare player selection and computer selection
 function gameplay(playerSelection, computerSelection) {
+    let playerScore = 0
+
+    if (playerSelection === computerSelection) {
+        console.log("Draw!")
+    } else if (playerSelection === "rock" && computerSelection === "paper") {
+        console.log("Loser!")
+    } else if (playerSelection === "scissors" && computerSelection === "rock") {
+        console.log("Loser!")
+    } else if (playerSelection === "paper" && computerSelection === "scissors") {
+        console.log("Loser!")
+    } else if (computerSelection === "rock" && playerSelection === "paper") {
+        console.log("Winner!")
+        playerScore += 1;
+    } else if (computerSelection === "scissors" && playerSelection === "rock") {
+        console.log("Winner!")
+        playerScore += 1;
+    } else if (computerSelection === "paper" && playerSelection === "scissors") {
+        console.log("Winner!")
+        playerScore += 1;
+    }
 }
