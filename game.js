@@ -4,31 +4,47 @@ game();
 
 function game() {
     // Prompt player to choose RPS (0=Rock, 1=Paper, 2=Scissors)
-    let playerSelection = parseInt(prompt(`Welcome to Rock Paper Scissors! Game of 5! 
+    let playerScore = 0;
+
+    for (let roundNo = 1; roundNo < 6; roundNo++) {
+        let playerSelection = parseInt(prompt(`Welcome to Rock Paper Scissors! Game of 5! 
     Choose your selection:
     1 = Rock,
     2 = Scissors,
     3 = Paper`))
 
-    switch (playerSelection) {
-        case 1:
-            playerSelection = "rock";
-            break;
-        case 2:
-            playerSelection = "scissors";
-            break;
-        case 3:
-            playerSelection = "paper";
-            break;
-        default:
-            console.log("Please enter number 1-3 only!")
+        switch (playerSelection) {
+            case 1:
+                playerSelection = "rock";
+                break;
+            case 2:
+                playerSelection = "scissors";
+                break;
+            case 3:
+                playerSelection = "paper";
+                break;
+            default:
+                console.log("Please enter number 1-3 only!")
+        }
+
+        let computerSelection = getComputerChoice();
+
+        console.log(`You chose ${playerSelection}!`)
+        console.log(`Versus ${computerSelection}!`)
+        let roundWin = gameplay(playerSelection, computerSelection);
+
+        console.log(roundNo)
+        if (roundWin) {
+            playerScore += 1
+        }
     }
 
-    let computerSelection = getComputerChoice();
-
-    console.log(playerSelection)
-    console.log(computerSelection)
-    gameplay(playerSelection, computerSelection)
+    if (playerScore >= 3) {
+        console.log(playerScore)
+        console.log("You are the winner!!!")
+    } else {
+        console.log("NOOB")
+    }
 }
 
 // Generate random computer choice for RPS
@@ -43,7 +59,7 @@ function getComputerChoice() {
 
 // Compare player selection and computer selection
 function gameplay(playerSelection, computerSelection) {
-    let playerScore = 0
+    let roundWin = false
 
     if (playerSelection === computerSelection) {
         console.log("Draw!")
@@ -55,12 +71,14 @@ function gameplay(playerSelection, computerSelection) {
         console.log("Loser!")
     } else if (computerSelection === "rock" && playerSelection === "paper") {
         console.log("Winner!")
-        playerScore += 1;
+        roundWin = true;
     } else if (computerSelection === "scissors" && playerSelection === "rock") {
         console.log("Winner!")
-        playerScore += 1;
+        roundWin = true;
     } else if (computerSelection === "paper" && playerSelection === "scissors") {
         console.log("Winner!")
-        playerScore += 1;
+        roundWin = true;
     }
+
+    return roundWin;
 }
