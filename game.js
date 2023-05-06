@@ -8,6 +8,7 @@ function game() {
 
     for (let roundNo = 1; roundNo < 6; roundNo++) {
         let playerSelection = parseInt(prompt(`Welcome to Rock Paper Scissors! Game of 5! 
+    This is Round ${roundNo}!
     Choose your selection:
     1 = Rock,
     2 = Scissors,
@@ -31,18 +32,19 @@ function game() {
 
         console.log(`You chose ${playerSelection}!`)
         console.log(`Versus ${computerSelection}!`)
+
         let roundWin = gameplay(playerSelection, computerSelection);
 
-        console.log(roundNo)
         if (roundWin) {
             playerScore += 1
         }
     }
 
     if (playerScore >= 3) {
-        console.log(playerScore)
+        console.log(`Your score is ${playerScore}.`)
         console.log("You are the winner!!!")
     } else {
+        console.log(`Your score is ${playerScore}.`)
         console.log("NOOB")
     }
 }
